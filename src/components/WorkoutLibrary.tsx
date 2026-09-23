@@ -1,10 +1,10 @@
-import { IWorkOut } from '@/types/types';
+import { IExerciseType } from '@/types/types';
 import React from 'react';
 import WorkoutCard from './WorkoutCard';
 
 const WorkoutLibrary = async () => {
     const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
-    const workouts: IWorkOut[] = await res.json();
+    const exercises: IExerciseType[] = await res.json();
     return (
         <section className='container mx-auto mt-15 mb-20'>
             <div className='space-y-2 mb-8'>
@@ -13,7 +13,7 @@ const WorkoutLibrary = async () => {
             </div>
             <div className="grid w-full grid-cols-1 gap-6 md:gap-10 lg:gap-12 md:grid-cols-2 lg:grid-cols-3">
                 {
-                    workouts.map(workout => <WorkoutCard key={workout.id} workout={workout}></WorkoutCard>)
+                    exercises.map(exercise => <WorkoutCard key={exercise.id} exercise={exercise}></WorkoutCard>)
                 }
             </div>
         </section>

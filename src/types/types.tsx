@@ -1,4 +1,4 @@
-export interface IWorkOut {
+export interface IExerciseType {
     "id": number,
     "name": string,
     "image": string,
@@ -14,6 +14,6 @@ export interface IWorkOut {
     "instructions": string[]
 }
 
-export interface IWorkoutProps {
-    workout: IWorkOut,
+export interface IExerciseTypeProp {
+    exercise: IExerciseType,
 }

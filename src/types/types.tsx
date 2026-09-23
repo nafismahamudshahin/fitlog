@@ -13,3 +13,7 @@ export interface IWorkOut {
     "description": string,
     "instructions": string[]
 }
+
+export interface IWorkoutProps {
+    workout: IWorkOut,
+}

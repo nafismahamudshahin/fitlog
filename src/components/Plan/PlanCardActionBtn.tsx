@@ -2,14 +2,17 @@ import { ExerciseContext } from '@/contexts/ExercisePlanStoreContext';
 import Link from 'next/link';
 import { useContext } from 'react';
 import { LuX } from 'react-icons/lu';
+import { toast } from 'react-toastify';
 
 const PlanCardActionBtn = ({ id }: { id: number }) => {
     const { btnIsActive, planExercise, setPlanExercise, saveExercise, setSaveExercise } = useContext(ExerciseContext);
     const handleDeletePlanCard = (id: number): void => {
         if (btnIsActive) {
             setPlanExercise([...planExercise.filter(p => p.id !== id)]);
+            toast.info("removes the workout")
         } else {
             setSaveExercise([...saveExercise.filter(s => s.id !== id)]);
+            toast.info("removes the workout")
         }
     }
     return (

@@ -5,7 +5,7 @@ const WorkoutLibrary = async () => {
     const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
     const exercises: IExerciseType[] = await res.json();
     return (
-        <section className='container mx-auto mt-15 mb-20'>
+        <section id='library' className='container mx-auto mt-15 mb-20'>
             <div className='space-y-2 mb-8'>
                 <h1 className='text-white text-4xl font-bold'>THE LIBRARY</h1>
                 <p className='text-[#9CA3AF] text-md'>Twelve lifts covering every major muscle group.</p>

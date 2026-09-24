@@ -3,12 +3,12 @@ import EmptyPlan from '@/components/Plan/EmptyPlan';
 import PlanCard from '@/components/Plan/PlanCard';
 import PlanSummary from '@/components/Plan/PlanSummary';
 import { ExerciseContext } from '@/contexts/ExercisePlanStoreContext';
-import Link from 'next/link';
-import React, { useContext } from 'react';
+import { IExerciseType } from '@/types/types';
+import React, { useContext, useState } from 'react';
 
 
 const MyPlanPage = () => {
-    const { planExercise, setPlanExercise, saveExercise, setSaveExercise, btnIsActive, setBtnAcive } = useContext(ExerciseContext);
+    const { planExercise, saveExercise, btnIsActive, setBtnAcive } = useContext(ExerciseContext);
     const plan = planExercise.reduce((acc, exercise) => ({
         duration: acc.duration + exercise.duration,
         calories: acc.calories + exercise.caloriesBurned,
@@ -26,6 +26,21 @@ const MyPlanPage = () => {
     });
     const planData = { length: planExercise.length, duration: plan.duration, calories: plan.calories };
     const saveData = { length: saveExercise.length, duration: save.duration, calories: save.calories };
+
+    // sort features:
+    const [filterOption, setFilterOption] = useState<string>("duration")
+    const getSort = (exercises: IExerciseType[]): IExerciseType[] => {
+        const copyOfExercises = [...exercises];
+        console.log(filterOption)
+        if (filterOption === "calories") {
+            return copyOfExercises.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+        } else if (filterOption === "rating") {
+            return copyOfExercises.sort((a, b) => b.rating - a.rating);
+        }
+        return copyOfExercises.sort((a, b) => b.duration - a.duration);
+    }
+    const filteredPlan: IExerciseType[] = getSort(planExercise);
+    const filteredSave: IExerciseType[] = getSort(saveExercise);
     return (
         <section className='container mx-auto'>
             <div className='my-8'>
@@ -44,20 +59,19 @@ const MyPlanPage = () => {
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="text-xl text-[#858994]">Sort By</span>
-                        <select
+                        <select onChange={(e) => setFilterOption(e.target.value)}
                             className="rounded-lg border border-[#252832] bg-[#12151b] px-3 py-2 text-xl text-[#d1d5db] outline-none  focus:border-[#353944]"
                             defaultValue="duration">
                             <option value="duration">Duration</option>
                             <option value="calories">Calories</option>
-                            <option value="difficulty">Difficulty</option>
-                            <option value="name">Name</option>
+                            <option value="rating">Rating</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div className='grid grid-cols-1 gap-4 py-5'>
                 {
-                    btnIsActive ? planExercise.length === 0 ? <EmptyPlan /> : planExercise.map(exercise => <PlanCard key={exercise.id} exercise={exercise}></PlanCard>) : saveExercise.length === 0 ? <EmptyPlan /> : saveExercise.map(exercise => <PlanCard key={exercise.id} exercise={exercise}></PlanCard>)
+                    btnIsActive ? filteredPlan.length === 0 ? <EmptyPlan /> : filteredPlan.map(exercise => <PlanCard key={exercise.id} exercise={exercise}></PlanCard>) : filteredSave.length === 0 ? <EmptyPlan /> : filteredSave.map(exercise => <PlanCard key={exercise.id} exercise={exercise}></PlanCard>)
                 }
             </div>
         </section>

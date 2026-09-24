@@ -2,6 +2,7 @@
 import { ExerciseContext } from '@/contexts/ExercisePlanStoreContext';
 import { IExerciseType } from '@/types/types';
 import { useContext } from 'react';
+import { FaRegBookmark } from 'react-icons/fa';
 import { LuCalendarPlus2 } from 'react-icons/lu';
 import { toast } from 'react-toastify';
 
@@ -33,7 +34,7 @@ const ExerciseActions = ({ exercise }: IExerciseActionProps) => {
     return (
         <>
             <button onClick={() => handleAddToPlan()} className='btn bg-lime-400 border-none rounded-xl font-bold items-center'><LuCalendarPlus2 className='text-2xl font-bold' /> Add to today{`'`}s plan</button>
-            <button onClick={() => handleAddToSave()} className='btn bg-black hover:bg-lime-400 hover:text-black rounded-xl border border-lime-400 text-lime-400'>Save for later</button>
+            <button onClick={() => handleAddToSave()} className='btn bg-black hover:bg-lime-400 hover:text-black rounded-xl border border-lime-400 text-lime-400'><FaRegBookmark className='text-xl' /> Save for later</button>
         </>
     );
 };

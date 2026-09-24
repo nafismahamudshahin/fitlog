@@ -15,12 +15,10 @@ const WorkoutCard = ({ exercise }: IExerciseTypeProp) => {
                 <div className="p-5">
                     <div className="mb-4 flex flex-wrap gap-2">
                         {
-                            muscleGroups.map(muscleGroup => (
-                                <>
-                                    <span className="rounded-full bg-lime-400 px-3 py-1 text-xs font-bold uppercase text-black">
-                                        {muscleGroup}
-                                    </span>
-                                </>
+                            muscleGroups.map((muscleGroup, idx) => (
+                                <span key={idx} className="rounded-full bg-lime-400 px-3 py-1 text-xs font-bold uppercase text-black">
+                                    {muscleGroup}
+                                </span>
                             ))
                         }
                     </div>

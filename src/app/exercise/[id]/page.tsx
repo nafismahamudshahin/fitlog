@@ -1,7 +1,6 @@
+import ExerciseActions from '@/components/ExerciseActions';
 import { IExerciseType } from '@/types/types';
 import Image from 'next/image';
-import React from 'react';
-import { LuCalendarPlus2 } from 'react-icons/lu';
 
 const ExerciseDetailsPage = async ({ params }: { params: { id: string } }) => {
     const { id } = await params;
@@ -67,8 +66,7 @@ const ExerciseDetailsPage = async ({ params }: { params: { id: string } }) => {
                         </ol>
                     </div>
                     <div className='flex gap-5'>
-                        <button className='btn bg-lime-400 border-none rounded-xl font-bold items-center'><LuCalendarPlus2 className='text-2xl font-bold' /> Add to today{`'`}s plan</button>
-                        <button className='btn bg-black hover:bg-lime-400 hover:text-black rounded-xl border border-lime-400 text-lime-400'>Save for later</button>
+                        <ExerciseActions exercise={exercise}></ExerciseActions>
                     </div>
                 </div>
             </div >

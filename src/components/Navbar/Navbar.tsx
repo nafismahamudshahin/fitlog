@@ -2,6 +2,7 @@ import Link from "next/link";
 import NavLinks from "./NavLinks";
 import Image from "next/image";
 import Logo from "@/assets/logo.png";
+import PlanMenu from "./PlanMenu";
 const Navbar = () => {
     return (
         <nav className="border-b border-gray-800">
@@ -30,22 +31,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-2 text-[#9CA3AF] font-semibold text-sm">
-                    <Link href="/my-plan" className="">
-                        <div className="flex gap-2">
-                            <span>
-                                Plan
-                            </span>
-                            <b className="bg-lime-400 text-black w-6 flex justify-center h-full rounded-full">{0}</b>
-                        </div>
-                    </Link>
-                    <Link href="/my-plan" className="">
-                        <div className="flex gap-2">
-                            <span>
-                                Saved
-                            </span>
-                            <b className="border text-white w-6 flex justify-center h-full rounded-full">{0}</b>
-                        </div>
-                    </Link>
+                    <PlanMenu></PlanMenu>
                 </div>
             </div >
         </nav>

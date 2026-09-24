@@ -8,6 +8,8 @@ const ExerciseDetailsPage = async ({ params }: { params: { id: string } }) => {
     const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
     const exercise: IExerciseType = await res.json();
     const { name, image, muscleGroups, equipment, difficulty, duration, caloriesBurned, rating, description, instructions, sets } = exercise;
+    const trStyle: string = 'border-b px-5 py-3 flex justify-between ';
+    const tElementStyle: string = "text-[#9CA3AF] font-bold";
     return (
         <section className='container mx-auto my-10'>
             <div className='flex flex-col lg:flex-row gap-10 px-2'>
@@ -29,30 +31,30 @@ const ExerciseDetailsPage = async ({ params }: { params: { id: string } }) => {
                         }
                     </div>
                     <div>
-                        <div className='border rounded-2xl py-5'>
-                            <div className='border-b px-5 pb-3 flex justify-between '>
-                                <h3 className='text-[#9CA3AF] font-bold'>EQUIPMENT</h3>
-                                <h3 className='text-[#9CA3AF] font-bold'>{equipment}</h3>
+                        <div className='border rounded-2xl py-2'>
+                            <div className={trStyle}>
+                                <h3 className={tElementStyle}>EQUIPMENT</h3>
+                                <h3 className={tElementStyle}>{equipment}</h3>
                             </div>
-                            <div className='border-b px-5 py-3 flex justify-between '>
-                                <h3 className='text-[#9CA3AF] font-bold'>DIFFICULTY</h3>
-                                <h3 className='text-[#9CA3AF] font-bold'>{difficulty}</h3>
+                            <div className={trStyle}>
+                                <h3 className={tElementStyle}>DIFFICULTY</h3>
+                                <h3 className={tElementStyle}>{difficulty}</h3>
                             </div>
-                            <div className='border-b px-5 py-3 flex justify-between '>
-                                <h3 className='text-[#9CA3AF] font-bold'>SETS</h3>
-                                <h3 className='text-[#9CA3AF] font-bold'>{sets}</h3>
+                            <div className={trStyle}>
+                                <h3 className={tElementStyle}>SETS</h3>
+                                <h3 className={tElementStyle}>{sets}</h3>
                             </div>
-                            <div className='border-b px-5 py-3 flex justify-between '>
-                                <h3 className='text-[#9CA3AF] font-bold'>DURATION</h3>
-                                <h3 className='text-[#9CA3AF] font-bold'>{duration} min</h3>
+                            <div className={trStyle}>
+                                <h3 className={tElementStyle}>DURATION</h3>
+                                <h3 className={tElementStyle}>{duration} min</h3>
                             </div>
-                            <div className='border-b px-5 py-3 flex justify-between '>
-                                <h3 className='text-[#9CA3AF] font-bold'>CALORIES</h3>
-                                <h3 className='text-[#9CA3AF] font-bold'>{caloriesBurned} kcal</h3>
+                            <div className={trStyle}>
+                                <h3 className={tElementStyle}>CALORIES</h3>
+                                <h3 className={tElementStyle}>{caloriesBurned} kcal</h3>
                             </div>
-                            <div className='px-5 pt-3 flex justify-between '>
-                                <h3 className='text-[#9CA3AF] font-bold'>RATING</h3>
-                                <h3 className='text-[#9CA3AF] font-bold'>{rating}</h3>
+                            <div className={`${trStyle} border-none`}>
+                                <h3 className={tElementStyle}>RATING</h3>
+                                <h3 className={tElementStyle}>{rating}</h3>
                             </div>
                         </div>
                     </div>

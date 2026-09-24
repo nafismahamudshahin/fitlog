@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from "@/assets/banner.png";
 import Image from 'next/image';
+import Link from 'next/link';
 const HeroBanner = () => {
     return (
         <section className='container mx-auto bg-[#15171D] rounded-2xl my-12'>
@@ -10,7 +11,9 @@ const HeroBanner = () => {
                     <h1 className='text-white font-extrabold text-2xl md:text-5xl'>TRAIN WITH INTENT. LOG EVERY SET.</h1>
                     <p className="text-[#9CA3AF]">FitLog is a dark, no-nonsense gym companion: pick a lift, lock it
                         into today{`'`}s plan, and watch the week{`'`}s work add up.</p>
-                    <button className='bg-lime-400 btn border-none'>BROWSE WORKOUTS</button>
+                    <Link href="/exercise">
+                        <button className='bg-lime-400 btn border-none'>BROWSE WORKOUTS</button>
+                    </Link>
                 </div>
                 <div className='flex-1 flex justify-end items-center'>
                     <Image width={334} height={334} src={Banner} alt='Hero banner'></Image>

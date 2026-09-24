@@ -1,0 +1,77 @@
+import { IExerciseType } from '@/types/types';
+import Image from 'next/image';
+import React from 'react';
+import { LuCalendarPlus2 } from 'react-icons/lu';
+
+const ExerciseDetailsPage = async ({ params }: { params: { id: string } }) => {
+    const { id } = await params;
+    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+    const exercise: IExerciseType = await res.json();
+    const { name, image, muscleGroups, equipment, difficulty, duration, caloriesBurned, rating, description, instructions, sets } = exercise;
+    return (
+        <section className='container mx-auto my-10'>
+            <div className='flex flex-col lg:flex-row gap-10 px-2'>
+                <div className='flex-1 flex justify-center items-center'>
+                    <div className='relative aspect-square w-full max-w-775 overflow-hidden rounded-2xl'>
+                        <Image fill priority className='rounded-2xl object-cover' src={image} alt={name}></Image>
+                    </div>
+                </div>
+                <div className='space-y-4 flex flex-col justify-center flex-1'>
+                    <h2 className='text-white font-bold text-5xl'>{name}</h2>
+                    <p className='text-lg text-[#9CA3AF]'>{description}</p>
+                    <div className="mb-7 flex flex-wrap gap-3">
+                        {
+                            muscleGroups.map((muscleGroup, idx) => (
+                                <span key={idx} className="rounded-full bg-lime-400 px-4 py-2 text-sm font-bold uppercase text-black">
+                                    {muscleGroup}
+                                </span>
+                            ))
+                        }
+                    </div>
+                    <div>
+                        <div className='border rounded-2xl py-5'>
+                            <div className='border-b px-5 pb-3 flex justify-between '>
+                                <h3 className='text-[#9CA3AF] font-bold'>EQUIPMENT</h3>
+                                <h3 className='text-[#9CA3AF] font-bold'>{equipment}</h3>
+                            </div>
+                            <div className='border-b px-5 py-3 flex justify-between '>
+                                <h3 className='text-[#9CA3AF] font-bold'>DIFFICULTY</h3>
+                                <h3 className='text-[#9CA3AF] font-bold'>{difficulty}</h3>
+                            </div>
+                            <div className='border-b px-5 py-3 flex justify-between '>
+                                <h3 className='text-[#9CA3AF] font-bold'>SETS</h3>
+                                <h3 className='text-[#9CA3AF] font-bold'>{sets}</h3>
+                            </div>
+                            <div className='border-b px-5 py-3 flex justify-between '>
+                                <h3 className='text-[#9CA3AF] font-bold'>DURATION</h3>
+                                <h3 className='text-[#9CA3AF] font-bold'>{duration} min</h3>
+                            </div>
+                            <div className='border-b px-5 py-3 flex justify-between '>
+                                <h3 className='text-[#9CA3AF] font-bold'>CALORIES</h3>
+                                <h3 className='text-[#9CA3AF] font-bold'>{caloriesBurned} kcal</h3>
+                            </div>
+                            <div className='px-5 pt-3 flex justify-between '>
+                                <h3 className='text-[#9CA3AF] font-bold'>RATING</h3>
+                                <h3 className='text-[#9CA3AF] font-bold'>{rating}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 className='text-white font-bold text-2xl py-4'>INSTRUCTIONS</h3>
+                        <ol className='text-[#9CA3AF] leading-8 text-lg'>
+                            {
+                                instructions.map((eachInst, idx) => <li key={idx}>{`${idx + 1}.  ${eachInst}`}</li>)
+                            }
+                        </ol>
+                    </div>
+                    <div className='flex gap-5'>
+                        <button className='btn bg-lime-400 border-none rounded-xl font-bold items-center'><LuCalendarPlus2 className='text-2xl font-bold' /> Add to today{`'`}s plan</button>
+                        <button className='btn bg-black hover:bg-lime-400 hover:text-black rounded-xl border border-lime-400 text-lime-400'>Save for later</button>
+                    </div>
+                </div>
+            </div >
+        </section>
+    );
+};
+
+export default ExerciseDetailsPage;

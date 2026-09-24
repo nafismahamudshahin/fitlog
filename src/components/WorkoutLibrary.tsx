@@ -1,5 +1,4 @@
 import { IExerciseType } from '@/types/types';
-import React from 'react';
 import WorkoutCard from './WorkoutCard';
 
 const WorkoutLibrary = async () => {

@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { useContext } from 'react';
 
 const PlanMenu = () => {
-    const { planExercise, saveExercise } = useContext(ExerciseContext);
+    const { planExercise, saveExercise, setBtnAcive } = useContext(ExerciseContext);
     return (
         <>
             <Link href="/my-plan" className="">
-                <div className="flex gap-2">
+                <div onClick={() => setBtnAcive(true)} className="flex gap-2">
                     <span>
                         Plan
                     </span>
@@ -16,7 +16,7 @@ const PlanMenu = () => {
                 </div>
             </Link>
             <Link href="/my-plan" className="">
-                <div className="flex gap-2">
+                <div onClick={() => setBtnAcive(false)} className="flex gap-2">
                     <span>
                         Saved
                     </span>

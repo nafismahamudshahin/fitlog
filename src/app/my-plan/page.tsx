@@ -1,32 +1,44 @@
+"use client";
+import PlanSummary from '@/components/Plan/PlanSummary';
+import { ExerciseContext } from '@/contexts/ExercisePlanStoreContext';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
+
 
 const MyPlanPage = () => {
+    const { planExercise, setPlanExercise, saveExercise, setSaveExercise, btnIsActive, setBtnAcive } = useContext(ExerciseContext);
+    const plan = planExercise.reduce((acc, exercise) => ({
+        duration: acc.duration + exercise.duration,
+        calories: acc.calories + exercise.caloriesBurned,
+    }), {
+        duration: 0,
+        calories: 0,
+    });
+
+    const save = saveExercise.reduce((acc, exercise) => ({
+        duration: acc.duration + exercise.duration,
+        calories: acc.calories + exercise.caloriesBurned,
+    }), {
+        duration: 0,
+        calories: 0,
+    });
+    const planData = { length: planExercise.length, duration: plan.duration, calories: plan.calories };
+    const saveData = { length: saveExercise.length, duration: save.duration, calories: save.calories };
     return (
         <section className='container mx-auto'>
             <div className='my-8'>
                 <h2 className='text-white font-bold text-5xl'>MY PLAN</h2>
                 <p className='text-lg text-[#9CA3AF]'>Cap of five lifts for today. Finish them, then load more.</p>
             </div>
-            <div className='grid gap-8 grid-cols-3 rounded-2xl py-15 px-10 bg-[#13161D] border border-[#252832] my-8'>
-                <div className=''>
-                    <p className='text-[#9CA3AF]'>Exercises</p>
-                    <b className='text-lime-400 text-3xl'>2</b>
-                </div>
-                <div className='border-x px-6 border-[#8A92A0]'>
-                    <p className='text-[#9CA3AF]'>Exercises</p>
-                    <b className='text-white text-3xl'>2</b>
-                </div>
-                <div>
-                    <p className='text-[#9CA3AF]'>Exercises</p>
-                    <b className='text-white text-3xl'>2</b>
-                </div>
-            </div>
+            {
+                btnIsActive ? <PlanSummary data={planData}></PlanSummary> : <PlanSummary data={saveData}></PlanSummary>
+            }
+
             <div>
                 <div className='flex justify-between'>
                     <div className='bg-[#13161D] text-[#9CA3AF]   flex gap-3 border border-[#252832] rounded-2xl p-1'>
-                        <button className='border border-[#252832] rounded-2xl px-3 py-2'>Today{`'`}s Plan</button>
-                        <button className='border border-[#252832] rounded-2xl px-10 py-2'>Saved</button>
+                        <button onClick={() => setBtnAcive(true)} className={`${btnIsActive ? "border border-[#252832] text-lime-400" : "border border-transparent"} font-bold rounded-2xl px-3 py-2`}>Today{`'`}s Plan</button>
+                        <button onClick={() => setBtnAcive(false)} className={`${btnIsActive ? "border border-transparent" : "border border-[#252832] text-lime-400"} font-bold rounded-2xl px-10 py-2`}>Saved</button>
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="text-xl text-[#858994]">Sort By</span>
@@ -40,10 +52,8 @@ const MyPlanPage = () => {
                         </select>
                     </div>
                 </div>
-                <div>
-
-                </div>
             </div>
+
             <div className='space-y-3 text-center border border-dashed border-[#252832] rounded-2xl py-20 my-10'>
                 <h3 className='text-3xl font-bold text-white'>NOTHING HERE YET</h3>
                 <p className='text-xl text-[#9CA3AF]'>Browse the library and add a lift to get today moving.</p>

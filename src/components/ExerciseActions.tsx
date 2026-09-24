@@ -3,6 +3,7 @@ import { ExerciseContext } from '@/contexts/ExercisePlanStoreContext';
 import { IExerciseType } from '@/types/types';
 import { useContext } from 'react';
 import { LuCalendarPlus2 } from 'react-icons/lu';
+import { toast } from 'react-toastify';
 
 interface IExerciseActionProps {
     exercise: IExerciseType
@@ -11,10 +12,23 @@ interface IExerciseActionProps {
 const ExerciseActions = ({ exercise }: IExerciseActionProps) => {
     const { planExercise, setPlanExercise, saveExercise, setSaveExercise } = useContext(ExerciseContext);
     const handleAddToPlan = (): void => {
-        setPlanExercise([...planExercise, exercise]);
+        const exist = planExercise.some(plan => plan.id === exercise.id);
+        if (!exist) {
+            setPlanExercise([...planExercise, exercise]);
+            toast.success("Add to Plane.")
+        } else {
+            toast.error("This is already exits.")
+        }
     }
     const handleAddToSave = (): void => {
-        setSaveExercise([...saveExercise, exercise]);
+        const exist = saveExercise.some(plan => plan.id === exercise.id);
+        if (!exist) {
+            setSaveExercise([...saveExercise, exercise]);
+            toast.success("Add to save.")
+        } else {
+            toast.error("This is already exits.")
+        }
+
     }
     return (
         <>

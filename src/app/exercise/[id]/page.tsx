@@ -1,10 +1,14 @@
 import ExerciseActions from '@/components/ExerciseActions';
 import { IExerciseType } from '@/types/types';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
-const ExerciseDetailsPage = async ({ params }: { params: { id: string } }) => {
+const ExerciseDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
     const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+    if (!res.ok) {
+        notFound();
+    }
     const exercise: IExerciseType = await res.json();
     const { name, image, muscleGroups, equipment, difficulty, duration, caloriesBurned, rating, description, instructions, sets } = exercise;
     const trStyle: string = 'border-b px-5 py-3 flex justify-between ';

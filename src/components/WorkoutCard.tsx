@@ -8,9 +8,9 @@ const WorkoutCard = ({ exercise }: IExerciseTypeProp) => {
     const { id, name, image, muscleGroups, equipment, duration, caloriesBurned, rating } = exercise;
     return (
         <Link href={`/exercise/${id}`}>
-            <div className="w-full overflow-hidden rounded-2xl border border-[#292d35] bg-[#15171c]">
+            <div className="w-full overflow-hidden rounded-2xl border border-[#292d35] hover:border-lime-400 bg-[#15171c]">
                 <div className="relative h-90 w-full overflow-hidden">
-                    <Image className="h-full w-full object-cover" width={500} height={300} src={image} alt={name} />
+                    <Image className="h-full w-full object-cover transition-transform duration-300 hover:scale-107" width={500} height={300} src={image} alt={name} />
                 </div>
                 <div className="p-5">
                     <div className="mb-4 flex flex-wrap gap-2">

@@ -44,7 +44,7 @@ const MyPlanPage = () => {
     return (
         <section className='container mx-auto'>
             <div className='my-8'>
-                <h2 className='text-white font-bold text-5xl'>MY PLAN</h2>
+                <h2 className='text-white font-bold text-3xl xl:text-4xl lg:text-5xl'>MY PLAN</h2>
                 <p className='text-lg text-[#9CA3AF]'>Cap of five lifts for today. Finish them, then load more.</p>
             </div>
             {
@@ -52,16 +52,38 @@ const MyPlanPage = () => {
             }
 
             <div>
-                <div className='flex justify-between'>
-                    <div className='bg-[#13161D] text-[#9CA3AF]   flex gap-3 border border-[#252832] rounded-2xl p-1'>
-                        <button onClick={() => setBtnAcive(true)} className={`${btnIsActive ? "border border-[#252832] text-lime-400" : "border border-transparent"} font-bold rounded-2xl px-3 py-2`}>Today{`'`}s Plan</button>
-                        <button onClick={() => setBtnAcive(false)} className={`${btnIsActive ? "border border-transparent" : "border border-[#252832] text-lime-400"} font-bold rounded-2xl px-10 py-2`}>Saved</button>
+                <div className="flex flex-col-reverse gap-4 lg:flex-row lg:items-center lg:justify-between">
+
+                    {/* Today / Saved */}
+                    <div className="bg-[#13161D] text-[#9CA3AF] w-full lg:w-[25%] flex justify-between gap-3 border border-[#252832] rounded-2xl p-1">
+
+                        <button
+                            onClick={() => setBtnAcive(true)}
+                            className={`${btnIsActive
+                                ? "border border-[#252832] text-lime-400"
+                                : "border border-transparent"
+                                } font-bold rounded-2xl w-full py-2`}>
+                            Today{`'`}s Plan
+                        </button>
+
+                        <button
+                            onClick={() => setBtnAcive(false)}
+                            className={`${btnIsActive
+                                ? "border border-transparent"
+                                : "border border-[#252832] text-lime-400"
+                                } font-bold rounded-2xl w-full py-2`}>
+                            Saved
+                        </button>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <span className="text-xl text-[#858994]">Sort By</span>
-                        <select onChange={(e) => setFilterOption(e.target.value)}
-                            className="rounded-lg border border-[#252832] bg-[#12151b] px-3 py-2 text-xl text-[#d1d5db] outline-none  focus:border-[#353944]"
-                            defaultValue="duration">
+
+                    {/* Sort */}
+                    <div className="flex flex-col gap-2 w-full md:flex-row md:items-center lg:w-[45%]">
+
+                        <h4 className="text-xl text-[#858994] md:w-[20%] lg:w-[20%]">
+                            Sort By
+                        </h4>
+
+                        <select onChange={(e) => setFilterOption(e.target.value)} className="rounded-lg border border-[#252832] w-full md:w-[80%] bg-[#12151b] px-3 py-2 text-xl text-[#d1d5db] outline-none focus:border-[#353944]" defaultValue="duration">
                             <option value="duration">Duration</option>
                             <option value="calories">Calories</option>
                             <option value="rating">Rating</option>

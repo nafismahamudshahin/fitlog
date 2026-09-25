@@ -20,7 +20,7 @@ const Navbar = () => {
                     </div>
                     <Link href="/" className="text-xl flex gap-2 justify-center items-center font-bold">
                         <Image width={28} height={28} src={Logo} alt="logo"></Image>
-                        <span className="text-white text-2xl">
+                        <span className="text-white text-xl md:text-2xl">
                             FITLOG
                         </span>
                     </Link>
@@ -30,7 +30,7 @@ const Navbar = () => {
                         <NavLinks></NavLinks>
                     </ul>
                 </div>
-                <div className="navbar-end gap-2 text-[#9CA3AF] font-semibold text-sm">
+                <div className="navbar-end gap-4 text-[#9CA3AF] font-semibold text-sm">
                     <PlanMenu></PlanMenu>
                 </div>
             </div >

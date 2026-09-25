@@ -16,25 +16,24 @@ const ExerciseActions = ({ exercise }: IExerciseActionProps) => {
         const exist = planExercise.some(plan => plan.id === exercise.id);
         if (!exist) {
             setPlanExercise([...planExercise, exercise]);
-            toast.success("Add to Plane.")
+            toast.success("Added To today's plan.")
         } else {
-            toast.error("This is already exits.")
+            toast.error("Already in your plan.")
         }
     }
     const handleAddToSave = (): void => {
         const exist = saveExercise.some(plan => plan.id === exercise.id);
         if (!exist) {
             setSaveExercise([...saveExercise, exercise]);
-            toast.success("Add to save.")
+            toast.success("Added to save list.")
         } else {
-            toast.error("This is already exits.")
+            toast.error("Already in your save list.")
         }
-
     }
     return (
         <>
             <button onClick={() => handleAddToPlan()} className='btn bg-lime-400 border-none rounded-xl font-bold items-center'><LuCalendarPlus2 className='text-2xl font-bold' /> Add to today{`'`}s plan</button>
-            <button onClick={() => handleAddToSave()} className='btn bg-black hover:bg-lime-400 hover:text-black rounded-xl border border-lime-400 text-lime-400'><FaRegBookmark className='text-xl' /> Save for later</button>
+            <button onClick={() => handleAddToSave()} className='btn bg-black hover:bg-lime-400 hover:text-black rounded-xl border border-lime-400 text-lime-400'><FaRegBookmark className='text-xl' />  Save for later</button>
         </>
     );
 };

@@ -3,7 +3,7 @@ import React from 'react';
 const WorkoutSkeleton = () => {
     return (
         <section className='container mx-auto'>
-            <div className="grid grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-3 pt-20">
                 {[...Array(6)].map((_, index) => (
                     <div
                         key={index}

@@ -1,7 +1,9 @@
 import ExerciseActions from '@/components/ExerciseActions';
+import ExerciseDetailsSkeleton from '@/components/ExerciseDetailsSkeleton';
 import { IExerciseType } from '@/types/types';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 const ExerciseDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;

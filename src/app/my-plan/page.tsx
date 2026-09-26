@@ -4,7 +4,7 @@ import PlanCard from '@/components/Plan/PlanCard';
 import PlanSummary from '@/components/Plan/PlanSummary';
 import { ExerciseContext } from '@/contexts/ExercisePlanStoreContext';
 import { IExerciseType } from '@/types/types';
-import React, { useContext, useState } from 'react';
+import React, { Suspense, useContext, useState } from 'react';
 
 
 const MyPlanPage = () => {
@@ -92,9 +92,11 @@ const MyPlanPage = () => {
                 </div>
             </div>
             <div className='grid grid-cols-1 gap-4 py-5'>
-                {
-                    btnIsActive ? filteredPlan.length === 0 ? <EmptyPlan /> : filteredPlan.map(exercise => <PlanCard key={exercise.id} exercise={exercise}></PlanCard>) : filteredSave.length === 0 ? <EmptyPlan /> : filteredSave.map(exercise => <PlanCard key={exercise.id} exercise={exercise}></PlanCard>)
-                }
+                <Suspense fallback={<h1>Loading workouts…</h1>}>
+                    {
+                        btnIsActive ? filteredPlan.length === 0 ? <EmptyPlan /> : filteredPlan.map(exercise => <PlanCard key={exercise.id} exercise={exercise}></PlanCard>) : filteredSave.length === 0 ? <EmptyPlan /> : filteredSave.map(exercise => <PlanCard key={exercise.id} exercise={exercise}></PlanCard>)
+                    }
+                </Suspense>
             </div>
         </section>
     );

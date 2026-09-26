@@ -1,9 +1,14 @@
 import ExerciseActions from '@/components/ExerciseActions';
-import ExerciseDetailsSkeleton from '@/components/ExerciseDetailsSkeleton';
 import { IExerciseType } from '@/types/types';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
+
+
+export async function generateStaticParams() {
+    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog`);
+    const exercises: IExerciseType[] = await res.json();
+    return exercises.map(exercise => ({ id: String(exercise.id) }))
+}
 
 const ExerciseDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;

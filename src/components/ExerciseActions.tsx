@@ -33,7 +33,7 @@ const ExerciseActions = ({ exercise }: IExerciseActionProps) => {
     return (
         <>
             <div className='grid grid-cols-2 gap-2'>
-                <button disabled={planExercise.length > 5} onClick={() => handleAddToPlan()} className={`btn ${planExercise.length > 5 ? "border-lime-400" : "bg-lime-400"} border-none rounded-xl font-bold text-sm items-center`}><LuCalendarPlus2 className='text-xl md:text-2xl font-bold' /> Add to today{`'`}s plan</button>
+                <button disabled={planExercise.length >= 5} onClick={() => handleAddToPlan()} className={`btn ${planExercise.length >= 5 ? "border-lime-400" : "bg-lime-400"} border-none rounded-xl font-bold text-sm items-center`}><LuCalendarPlus2 className='text-xl md:text-2xl font-bold' /> Add to today{`'`}s plan</button>
 
                 <button onClick={() => handleAddToSave()} className='btn bg-black hover:bg-lime-400 hover:text-black rounded-xl border border-lime-400 text-lime-400'><FaRegBookmark className='text-sm md:text-xl' />  Save for later</button>
             </div>

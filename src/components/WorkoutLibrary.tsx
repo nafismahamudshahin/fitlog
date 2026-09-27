@@ -33,12 +33,12 @@ const WorkoutLibrary = () => {
 
     return (
         <section id='library' className='container mx-auto mt-15 mb-20'>
-            <div>
-                <div className='space-y-2 mb-8'>
+            <div className='flex flex-col md:flex-row  md:justify-between'>
+                <div className='space-y-2 my-4 lg:mb-8'>
                     <h1 className='text-white text-3xl md:text-4xl font-bold'>THE LIBRARY</h1>
                     <p className='text-[#9CA3AF] text-md'>Twelve lifts covering every major muscle group.</p>
                 </div>
-                <div>
+                <div className='mb-8'>
                     <SearchWorkout setSearch={setSearch}></SearchWorkout>
                 </div>
             </div>

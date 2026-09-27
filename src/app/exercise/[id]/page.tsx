@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 
 const ExerciseDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
-    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`, { next: { revalidate: 60 } });
     if (!res.ok) {
         notFound();
     }

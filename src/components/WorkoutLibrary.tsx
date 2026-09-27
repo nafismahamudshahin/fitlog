@@ -10,7 +10,7 @@ const WorkoutLibrary = () => {
     const [exercises, setExercises] = useState<IExerciseType[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch("https://api.abcz.workers.dev/api/fitlog")
+        fetch("https://api.abcz.workers.dev/api/fitlog", { next: { revalidate: 60 } })
             .then((res) => res.json())
             .then((data) => {
                 setExercises(data);

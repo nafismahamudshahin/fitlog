@@ -5,7 +5,7 @@ import Logo from "@/assets/logo.png";
 import PlanMenu from "./PlanMenu";
 const Navbar = () => {
     return (
-        <nav className="border-b border-gray-800">
+        <nav className="sticky top-0 z-50 border-b border-[#292d35] bg-black">
             <div className="container  mx-auto navbar shadow-sm">
                 <div className="navbar-start">
                     <div className="dropdown">

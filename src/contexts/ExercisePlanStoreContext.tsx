@@ -40,7 +40,7 @@ const ExerciseProviderContext = ({ children }: { children: ReactNode }) => {
     // Save data to localStorage
     useEffect(() => {
         if (!isLoaded) return
-        localStorage.setItem("savedPlan", JSON.stringify(planExercise));
+        localStorage.setItem("todayPlan", JSON.stringify(planExercise));
     }, [planExercise, isLoaded]);
 
 
